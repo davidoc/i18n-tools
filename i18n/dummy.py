@@ -166,6 +166,31 @@ class Dummy2(BaseDummyConverter):
     ))
 
 
+class DummyDashIt(BaseDummyConverter):
+    """A second dummy converter.
+
+    Like Dummy, but uses a different obvious but readable automatic conversion:
+    Strikes-through many letters, and turns lower-case letters upside-down.
+
+    """
+    TABLE = dict(zip(
+        u"ABCDEFGHIJKLMNOOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz",
+        u"===========================--------------------------"
+    ))
+
+class DummyExIt(BaseDummyConverter):
+    """A second dummy converter.
+
+    Like Dummy, but uses a different obvious but readable automatic conversion:
+    Strikes-through many letters, and turns lower-case letters upside-down.
+
+    """
+    TABLE = dict(zip(
+        u"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz",
+        u"XXXXXXXXXXXXXXXXXXXXXXXXXXxxxxxxxxxxxxxxxxxxxxxxxxxx"
+    ))
+
+
 def make_dummy(filename, locale, converter):
     """
     Takes a source po file, reads it, and writes out a new po file
@@ -209,7 +234,7 @@ class DummyCommand(Runner):
         """
 
         source_messages_dir = config.CONFIGURATION.source_messages_dir
-        for locale, converter in zip(config.CONFIGURATION.dummy_locales, [Dummy(), Dummy2()]):
+        for locale, converter in zip(config.CONFIGURATION.dummy_locales, [Dummy(), Dummy2(), DummyDashIt(), DummyExIt()]):
             if args.verbose:
                 print('Processing source language files into dummy strings, locale "{}"'.format(locale))
             for source_file in config.CONFIGURATION.source_messages_dir.walkfiles('*.po'):
