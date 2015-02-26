@@ -10,7 +10,7 @@ BASE_DIR = path('.').abspath()  # pylint: disable=invalid-name
 
 # LOCALE_DIR contains the locale files.
 # Typically this should be 'edx-platform/conf/locale'
-LOCALE_DIR = BASE_DIR.joinpath('conf', 'locale')
+LOCALE_DIR = BASE_DIR.joinpath('locale')
 
 
 class Configuration(object):
